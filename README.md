@@ -10,3 +10,5 @@ cp ./node_modules/onnxruntime-web/dist/*.wasm public/static/js/
 
 npm start
 ```
+
+推論が完了したら結果が console.log に表示されます。
