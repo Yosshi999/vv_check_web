@@ -1,8 +1,8 @@
 {
   "env": {
-    "es2020": true,
-    "parserOptions": {
-      "sourceType": "module"
-    }
+    "es2020": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }
