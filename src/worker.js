@@ -9,8 +9,8 @@ const process = async () => {
     "ort-wasm-simd-threaded.wasm": "/static/js/ort-wasm-simd-threaded.wasm",
   };
   const option = {
-    // executionProviders: ["webgl"],
-    executionProviders: ["wasm"],
+    executionProviders: ["webgl"],
+    // executionProviders: ["wasm"],
   };
   session = await ort.InferenceSession.create("../../decode.onnx", option);
 };
