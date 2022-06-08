@@ -5,6 +5,8 @@ web 上で VV を動かそうとしてみるコード
 ## 実行
 
 ```bash
+npm ci
+
 mkdir -p public/static/js
 cp ./node_modules/onnxruntime-web/dist/*.wasm public/static/js/
 

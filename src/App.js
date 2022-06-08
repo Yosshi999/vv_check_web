@@ -9,9 +9,10 @@ const worker = new Worker("./static/js/worker.js");
 function App() {
   React.useEffect(() => {
     const messageHandler = (e) => {
-      console.log(e);
+      console.log(`worker message: ${e.data}`);
     };
     const errorHandler = (e) => {
+      console.error("worker error");
       console.error(e);
     };
     worker.addEventListener("message", messageHandler);

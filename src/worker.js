@@ -18,6 +18,8 @@ const process = async () => {
 process();
 
 addEventListener("message", async (e) => {
+  const startTime = performance.now();
+
   try {
     const { f0_data, phoneme_data } = e.data;
     const length = 407;
@@ -39,4 +41,7 @@ addEventListener("message", async (e) => {
   } catch (e) {
     postMessage(`failed to inference ONNX model: ${e}.`);
   }
+
+  const endTime = performance.now();
+  postMessage(`ellapsed time: ${(endTime - startTime) / 1000}`);
 });
