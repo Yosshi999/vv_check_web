@@ -9,13 +9,15 @@ const ort = require("onnxruntime-web");
 // const worker = new Worker("./static/js/worker.js");
 
 function App() {
-  let session = undefined;
+  let sessionSosoa = undefined;
+  let sessionHifi = undefined;
   const process = async () => {
-    const option = {
+    sessionSosoa = await ort.InferenceSession.create("./yukarin_sosoa.onnx", {
+      executionProviders: ["wasm"],
+    });
+    sessionHifi = await ort.InferenceSession.create("./hifigan.onnx", {
       executionProviders: ["webgl"],
-      // executionProviders: ["wasm"],
-    };
-    session = await ort.InferenceSession.create("./decode.onnx", option);
+    });
   };
   process();
 
@@ -36,7 +38,9 @@ function App() {
         const speaker_id = new ort.Tensor("int64", speaker_id_data, [1]);
 
         const feeds = { f0, phoneme, speaker_id };
-        const results = await session.run(feeds);
+        const spec = (await sessionSosoa.run(feeds)).spec;
+
+        const results = await sessionHifi.run({ spec });
 
         const output = results.wave.data;
         console.log(`data of result length: ${output.length}`);
