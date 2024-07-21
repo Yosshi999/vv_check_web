@@ -3,7 +3,7 @@ import React from "react";
 
 import { f0_data, phoneme_data } from "./data.js";
 
-const ort = require("onnxruntime-web");
+const ort = require("onnxruntime-web/webgpu");
 
 // console.log(self.crossOriginIsolated);
 // const worker = new Worker("./static/js/worker.js");
@@ -16,7 +16,7 @@ function App() {
       executionProviders: ["wasm"],
     });
     sessionHifi = await ort.InferenceSession.create("./hifigan.onnx", {
-      executionProviders: ["webgl"],
+      executionProviders: ["webgpu"],
     });
   };
   process();
